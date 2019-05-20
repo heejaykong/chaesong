@@ -13,6 +13,8 @@ import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux';
 import reducers from '../client/reducers';
 import thunk from 'redux-thunk';
+import 'bootstrap/dist/css/bootstrap.css';
+import '../asset/sass/ready.scss';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -20,6 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <div>
+                <Route path="/" component={App}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/MainPage" component={MainPage}/>

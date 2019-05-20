@@ -2,9 +2,11 @@ import Authentication from './Authentication';
 import RecipeViewTest from './RecipeViewsTest';
 import RecipeBox from './RecipeBox';
 import Main from './Main';
-import PersonalPage from './PersonalPage'
-import PersonalBox from './PersonalBox'
+import ScrapView from './ScrapView'
+import ScrapBox from './ScrapBox'
 import Search from './Search';
+import Header from './Header';
 import RecommendPage from './RecommendPage';
+import ScrapPage from './ScrapPage';
 
-export {Authentication, RecipeViewTest, RecipeBox, Main, Search, PersonalPage, PersonalBox, RecommendPage};
+export {Header,Authentication, RecipeViewTest, RecipeBox, Main, Search, ScrapView, ScrapPage, ScrapBox, RecommendPage};

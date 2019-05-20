@@ -36,6 +36,7 @@ const MemberScrap = sequelize.define(
         timestamps: false
     }
 );
+
 const Recipe = sequelize.define(
     'Recipe',
     {
@@ -47,6 +48,7 @@ const Recipe = sequelize.define(
         timestamps: false
     }
 );
+
 const MemberJoin = sequelize.define(
     'memberJoin',
     {

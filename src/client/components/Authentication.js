@@ -6,6 +6,7 @@ class Authentication extends React.Component{
     state={
         user_id:"",
         pw:"",
+        sex:"",
         birthyear:"",
         height:"",
         weight:"",
@@ -14,6 +15,18 @@ class Authentication extends React.Component{
     }
 
     handleChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
+
+    activeChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
+
+    sexChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
@@ -73,20 +86,20 @@ class Authentication extends React.Component{
     render(){
         const loginBoxes =    (
             <div>
-                <div className="input-field col s12">
-                    <label>ID</label>
+                <div>
                     <input
+                        placeholder="아이디"
                         name="user_id"
                         type="text"
                         className="validate"
                         onChange={this.handleChange}
                         value={this.state.user_id}/>
                 </div>
-                <div className="input-field col s12">
-                    <label>PW</label>
+                <div>
                     <input
+                        placeholder="비밀번호"
                         name="pw"
-                        type="text"
+                        type="password"
                         className="validate"
                         onChange={this.handleChange}
                         value={this.state.pw}
@@ -96,8 +109,10 @@ class Authentication extends React.Component{
         );
         const inputBoxes = (
             <div>
-                <div className="input-field col s12">
-                    <label>ID</label>
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="id">아이디</label>
+                    </h3>
                     <input
                         name="user_id"
                         type="text"
@@ -105,18 +120,22 @@ class Authentication extends React.Component{
                         onChange={this.handleChange}
                         value={this.state.user_id}/>
                 </div>
-                <div className="input-field col s12">
-                    <label>PW</label>
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="pw">비밀번호</label>
+                    </h3>
                     <input
                         name="pw"
-                        type="text"
+                        type="password"
                         className="validate"
                         onChange={this.handleChange}
                         value={this.state.pw}
                         onKeyPress={this.handleKeyPress}/>
                 </div>
-                <div className="input-field col s12">
-                    <label>출생년도</label>
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="birthyear">출생연도</label>
+                    </h3>
                     <input
                         name="birthyear"
                         type="int"
@@ -124,154 +143,120 @@ class Authentication extends React.Component{
                         onChange={this.handleChange}
                         value={this.state.birthyear}/>
                 </div>
-                <div className="radio">
-                    <label>성별</label>
-                    <label>
-                        <input
-                            name="sex"
-                            type="radio"
-                            className="validate"
-                            onChange={this.handleChange}
-                            value="0"/>
-                        여자
-                    </label>
-                    <label>
-                        <input
-                            name="sex"
-                            type="radio"
-                            className="validate"
-                            onChange={this.handleChange}
-                            value="1"/>
-                        남자
-                    </label>
+
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="active">성별</label>
+                    </h3>
+                    <div id="sex">
+                        <label className="radio-inline"><input type="radio" name="sex" className="validate"
+                                                               onChange={this.sexChange}
+                                   value="0"/>여자</label>
+                        <label className="radio-inline"><input type="radio" name="sex" className="validate"
+                                                               onChange={this.sexChange}
+                                                               value="1"/>남자</label>
+                    </div>
                 </div>
-                <div className="input-field col s12">
-                    <label>키</label>
+                <br/><br/>
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="height">키(cm)</label>
+                    </h3>
                     <input
                         name="height"
-                        type="int"
+                        type="number"
                         className="validate"
                         onChange={this.handleChange}
                         value={this.state.height}/>
-                    <label>cm</label>
                 </div>
-                <div className="input-field col s12">
-                    <label>몸무게</label>
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="weight">몸무게(kg)</label>
+                    </h3>
                     <input
                         name="weight"
-                        type="int"
+                        type="number"
                         className="validate"
                         onChange={this.handleChange}
                         value={this.state.weight}/>
-                    <label>kg</label>
                 </div>
-                <div className="radio">
-                    <label>활동량</label>
-                    <label>
-                        <input
-                            name="active"
-                            type="radio"
-                            className="validate"
-                            onChange={this.handleChange}
-                            value="1"/>
-                            적다
-                    </label>
-                    <label>
-                        <input
-                            name="active"
-                            type="radio"
-                            className="validate"
-                            onChange={this.handleChange}
-                            value="2"/>
-                        보통
-                    </label>
-                    <label>
-                        <input
-                            name="active"
-                            type="radio"
-                            className="validate"
-                            onChange={this.handleChange}
-                            value="3"/>
-                        많음
-                    </label>
+
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="active">활동량</label>
+                    </h3>
+                    <div id="active">
+                        <label className="radio-inline"><input type="radio" name="active" className="validate"
+                                                               onChange={this.activeChange}
+                                                               value="1"/>적다</label>
+                        <label className="radio-inline"><input type="radio" name="active" className="validate"
+                                                               onChange={this.activeChange}
+                                                               value="2"/>보통이다</label>
+                        <label className="radio-inline"><input type="radio" name="active" className="validate"
+                                                               onChange={this.activeChange}
+                                                               value="3"/>많다</label>
+                    </div>
                 </div>
-                <div className="radio">
-                    <label>채식타입</label>
-                    <input
-                        name="vegantype"
-                        type="radio"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value="1"/>
-                        페스코
-                    <input
-                        name="vegantype"
-                        type="radio"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value="2"/>
-                        락토 오보
-                    <input
-                        name="vegantype"
-                        type="radio"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value="3"/>
-                        오보
-                    <input
-                        name="vegantype"
-                        type="radio"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value="4"/>
-                        락토
-                    <input
-                        name="vegantype"
-                        type="radio"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value="5"/>
-                        비건
+
+                <div className="register-row">
+                    <h3 className="register-title">
+                        <label htmlFor="vegantype">채식타입</label>
+                    </h3>
+                    <select className="form-control" name="vegantype" id="vegantype">
+                        <option selected>채식타입을 선택해주세요!</option>
+                        <option name="vegantype"
+                                className="validate"
+                                onChange={this.handleChange}
+                                value="1">페스코 베지테리언</option>
+                        <option name="vegantype"
+                                className="validate"
+                                onChange={this.handleChange}
+                                value="2">락토오보 베지테리언</option>
+                        <option name="vegantype"
+                                className="validate"
+                                onChange={this.handleChange}
+                                value="3">오보 베지테리언</option>
+                        <option name="vegantype"
+                                className="validate"
+                                onChange={this.handleChange}
+                                value="4">락토 베지테리언</option>
+                        <option name="vegantype"
+                                className="validate"
+                                onChange={this.handleChange}
+                                value="5">비건</option>
+                    </select>
                 </div>
             </div>
         );
         const loginView=(
             <div>
                 <div className="card-content">
-                    <div className="row">
+                    <div className="login-form">
                         {loginBoxes}
                         <button className="login_btn"
-                                onClick={this.handleLogin}>LOGIN</button>
-                    </div>
-                </div>
-
-                <div className="footer">
-                    <div className="card-content">
-                        <div className="right">
-                            New Here? <Link to ="/register">Create an account</Link>
-                        </div>
+                                onClick={this.handleLogin}>로그인</button>
+                        <p className="message">아직 회원이 아니신가요? <a href="/register">회원가입</a></p>
                     </div>
                 </div>
             </div>
         );
 
         const registerView = (
-            <div className="card-content">
-                <div className="row">
-                    {inputBoxes}
-                    <button className="btn"
-                            onClick={this.handleRegister}>CREATE</button>
+            <div>
+                <div className = "card-content">
+                    <div className="register-form">
+                        {inputBoxes}
+                        <button className="btn"
+                                onClick={this.handleRegister}>CREATE</button>
+                        <p className="message">이미 회원이신가요? <a href="/login">로그인</a></p>
+                    </div>
                 </div>
             </div>
         );
 
         return (
-            <div className="container auth">
-                <Link className="logo" to="/">Chaesong</Link>
-                <div className="card">
-                    <div className="header center">
-                        <div className="card-content">{this.props.mode ? "채송 로그인" : "회원가입"}</div>
-                    </div>
+            <div className="login-page">
+                <div className="form">
                     {this.props.mode ? loginView : registerView }
                 </div>
             </div>

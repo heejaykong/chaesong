@@ -26,10 +26,10 @@ class Register extends Component{
     }
     render(){
         return (
-          <div>
-              <Authentication mode={false}
-              onRegister={this.handleRegister}/>
-          </div>
+            <div>
+                <Authentication mode={false}
+                                onRegister={this.handleLogin}/>
+            </div>
         );
     }
 }

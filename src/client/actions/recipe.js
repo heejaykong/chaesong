@@ -11,7 +11,10 @@ import{
     RECIPE_EAT_FAILURE,
     RECIPE_SEARCH,
     RECIPE_SEARCH_SUCCESS,
-    RECIPE_SEARCH_FAILURE
+    RECIPE_SEARCH_FAILURE,
+    RECIPE_FILTER,
+    RECIPE_FILTER_SUCCESS,
+    RECIPE_FILTER_FAILURE
 } from './ActionType';
 
 export function recipeListRequest(isInitial, listType){
@@ -21,10 +24,10 @@ export function recipeListRequest(isInitial, listType){
 
         return axios.get(url)
             .then((response)=>{
-                console.log("recipeviestest dispatch success" );
+                console.log("recipevieswtest dispatch success" );
                 dispatch(recipeListSuccess(response.data, isInitial, listType));
             }).catch((error) => {
-                console.log("recipeviestest dispatch failure");
+                console.log("recipevieswtest dispatch failure");
                 dispatch(recipeListFailure());
             })
     }
@@ -121,14 +124,16 @@ export function recipeEatFailure(error) {
     };
 }
 
-export function recipeSearchRequest(searchWord){
+export function recipeSearchRequest(searchWord, seafood, milk, egg, isInitial, listType){
     return (dispatch) =>{
         dispatch(recipeSearch());
 
-        return axios.get('/api/recipe/search/' + searchWord)
+        return axios.get('./api/search/' + searchWord + "/" +seafood+'/'+milk+'/'+egg)
             .then((response)=>{
-                dispatch(recipeSearchSuccess(response.data));
+                console.log("search dispatch success: " + searchWord + "/" +seafood+'/'+milk+'/'+egg);
+                dispatch(recipeSearchSuccess(searchWord, seafood, milk, egg, response.data, isInitial, listType));
             }).catch((error) =>{
+                console.log("search dispatch failure" );
                 dispatch(recipeSearchFailure());
             });
     };
@@ -140,10 +145,16 @@ export function recipeSearch(){
     };
 }
 
-export function recipeSearchSuccess(searchWord){
+export function recipeSearchSuccess(searchWord, seafood, milk, egg, data, isInitial, listType){
     return{
         type: RECIPE_SEARCH_SUCCESS,
-        searchWord
+        searchWord,
+        seafood,
+        milk,
+        egg,
+        data,
+        isInitial,
+        listType
     }
 }
 
@@ -152,3 +163,41 @@ export function recipeSearchFailure(){
         type: RECIPE_SEARCH_FAILURE
     }
 }
+
+/*export function recipeFilterRequest(seafood, milk, egg, isInitial, listType){
+    return (dispatch) =>{
+        dispatch(recipeFilter());
+
+        return axios.get('./api/filter/'+seafood+'/'+milk+'/'+egg)
+            .then((response)=>{
+                console.log("search dispatch success: " + searchWord);
+                dispatch(recipeSearchSuccess(searchWord, response.data, isInitial, listType));
+            }).catch((error) =>{
+                console.log("search dispatch failure" );
+                dispatch(recipeSearchFailure());
+            });
+    };
+}
+
+export function recipeFilter(){
+    return{
+        type: RECIPE_FILTER
+    };
+}
+
+export function recipeFilterSuccess(searchWord, data, isInitial, listType){
+    return{
+        type: RECIPE_FILTER_SUCCESS,
+        searchWord,
+        data,
+        isInitial,
+        listType
+    }
+}
+
+export function recipeFilterFailure(){
+    return {
+        type: RECIPE_FILTER_FAILURE
+    }
+}*/
+

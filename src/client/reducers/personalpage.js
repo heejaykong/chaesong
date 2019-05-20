@@ -3,8 +3,7 @@ import * as types from '../actions/ActionType'
 const initialState = {
     list: {
         status: 'INIT',
-        data: [],
-        isLast: false
+        data: []
     },
     status: {
         valid: false,
@@ -15,7 +14,7 @@ const initialState = {
 
 export default function personalpage (state = initialState, action){
     switch (action.type){
-        case types.EATEN_LIST:
+        case types.SCRAP_LOAD:
             console.log("eatenlist reducer waiting");
             return{
                 ...state,
@@ -24,7 +23,7 @@ export default function personalpage (state = initialState, action){
                     status: 'waiting'
                 }
             };
-        case types.EATEN_LIST_SUCCESS:
+        case types.SCRAP_LOAD_SUCCESS:
             console.log("eatenlist reducer success");
             if(action.isInitial){
                 return{
@@ -32,8 +31,7 @@ export default function personalpage (state = initialState, action){
                     list: {
                         ...state.list,
                         status: 'SUCCESS',
-                        data: action.data,
-                        isLast: action.data.length < 6
+                        data: action.data
                     }
                 }
             } else{
@@ -53,13 +51,12 @@ export default function personalpage (state = initialState, action){
                         list: {
                             ...state.list,
                             status: 'SUCCESS',
-                            data: [...state.list.data, ...action.data],
-                            islast: action.data.length < 6
+                            data: [...state.list.data, ...action.data]
                         }
                     }
                 }
             }
-        case types.EATEN_LIST_FAILURE:
+        case types.SCRAP_LOAD_FAILURE:
             return{
                 ...state,
                 list: {

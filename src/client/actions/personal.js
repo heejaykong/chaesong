@@ -1,43 +1,42 @@
 import axios from 'axios';
-import{
-    EATEN_LIST,
-    EATEN_LIST_SUCCESS,
-    EATEN_LIST_FAILURE
+import {
+    SCRAP_LOAD,
+    SCRAP_LOAD_SUCCESS,
+    SCRAP_LOAD_FAILURE
 } from './ActionType';
 
-export function eatenListRequest(isInitial, listType){
+export function scrapListRequest(isInitial, listType){
     return (dispatch) => {
-        dispatch(eatenList());
-        let url = './api/personalpage';
-
+        dispatch(scrapList());
+        let url = './api/personalpage/scrap';
         return axios.get(url)
             .then((response)=>{
-                console.log("eaten dispatch success");
-                dispatch(eatenListSuccess(response.data, isInitial, listType));
+                console.log("scrap list dispatch success");
+                dispatch(scrapLoadSuccess(response.data, isInitial, listType));
             }).catch((error) => {
-                console.log("eaten dispatch failure");
-                dispatch(eatenListFailure());
+                console.log("scrap list dispatch failure");
+                dispatch(scrapLoadFailure());
             })
     }
 }
 
-export function eatenList() {
+export function scrapList() {
     return {
-        type: EATEN_LIST
+        type: SCRAP_LOAD
     };
 }
 
-export function eatenListSuccess(data, isInitial, listType) {
+export function scrapLoadSuccess(data, isInitial, listType) {
     return {
-        type: EATEN_LIST_SUCCESS,
+        type: SCRAP_LOAD_SUCCESS,
         data,
         isInitial,
         listType
     };
 }
 
-export function eatenListFailure() {
+export function scrapLoadFailure() {
     return {
-        type: EATEN_LIST_FAILURE
+        type: SCRAP_LOAD_FAILURE
     };
 }

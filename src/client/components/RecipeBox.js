@@ -23,17 +23,14 @@ class RecipeBox extends Component{
 
     render() {
         return (
-            <div className="container recipe">
+            <div className="col-md-4 recipe-box">
                 <div className="card">
-                    <div className="info">
-                        <h3 className="recipename">{this.props.data.recipe_name}</h3>
+                    <div className="card-header">
+                        <h3 className="card-title">{this.props.data.recipe_name}</h3>
                     </div>
-                    <div className="card-content">
+                    <div className="card-body">
                         <img src={this.props.data.imgurl} alt="recipe"/>
                         <br/>
-                        <pre>
-                        {this.props.data.content}
-                        </pre>
                     </div>
                     <div className="footer">
                         <button onClick={this.handleEat}>

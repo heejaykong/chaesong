@@ -15,6 +15,7 @@ const sequelize = new Sequelize('chaesongdb', 'comhong', 'sook2019', {
 );
 const Op = Sequelize.Op;
 const recipe = express.Router();
+const querystring = require("querystring");
 
 const Recipe = sequelize.define(
     'Recipe',
@@ -56,6 +57,7 @@ recipe.use(cors());
 
 recipe.get('/', (req,res)=>{
     console.log("recipeviewtest routes");
+
     Recipe.findAll()
         .then(recipes=>{
             return res.json(recipes)
@@ -65,13 +67,14 @@ recipe.get('/', (req,res)=>{
         })
 });
 
-recipe.get('/filter', (req,res)=>{
-   console.log("recipeFilter routes");
-});
-
-recipe.get('/search/:searchWord',(req,res, next)=>{
+recipe.get('/:searchWord/:seafood/:milk/:egg', (req,res)=>{
+    console.log("recipe search routes");
     let searchWord = req.params.searchWord;
-
+    let seafood = req.params.seafood;
+    let milk = req.params.milk;
+    let egg = req.params.egg;
+    console.log(req.params.searchWord + " & " +searchWord);
+    console.log("seafood: "  + seafood +"/ milk: " + milk + "/ egg: " + egg);
     Recipe.findAll({
         where:{
             [Op.or]: [
@@ -84,18 +87,25 @@ recipe.get('/search/:searchWord',(req,res, next)=>{
                     content:{
                         [Op.like]: "%" + searchWord + "%"
                     }
-                }
-            ]
+                },
+            ],
+            seafood : {
+                [Op.lte] : req.params.seafood
+            },
+            milk : {
+                [Op.lte] : req.params.milk
+            },
+            egg : {
+                [Op.lte] : req.params.egg
+            }
         }
     }).then(recipes=>{
-        return res.json(recipes);
-    }).catch(err=>{
-        console.log(err);
+        //console.log(recipes);
+        return res.json(recipes)
     })
-});
-
-recipe.get('/search', (req,res)=>{
-    res.json([]);
+        .catch(err=>{
+            return res.send('error' + err)
+        })
 });
 
 module.exports = recipe;

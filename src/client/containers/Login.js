@@ -29,8 +29,8 @@ class Login extends Component {
     render() {
         return (
             <div>
-               <Authentication mode={true}
-               onLogin={this.handleLogin}/>
+                <Authentication mode={true}
+                                onLogin={this.handleLogin}/>
             </div>
         );
     }
@@ -38,7 +38,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      status: state.authentication.login.status
+        status: state.authentication.login.status
     };
 };
 

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {recipeListRequest, scrapRequest, eatRequest, recipeSearchRequest} from '../actions/recipe';
 import {connect} from 'react-redux';
 import {RecipeViewTest} from '../components';
+import shallowEqual from 'fbjs/lib/shallowEqual';
 
 class recipeview extends Component{
+
 
     handleScrap = (user_id, recipe_code) =>{
         console.log("scrap container ", user_id, recipe_code);
@@ -35,36 +37,68 @@ class recipeview extends Component{
         );
     }
 
-    handleSearch = (searchWord) =>{
+    /*shouldComponentUpdate(nextProps, nextState){
+        return true;
+    }*/
+
+    handleSearch = (searchWord, seafood, milk, egg) =>{
         console.log("search container");
-        this.props.recipeSearchRequest(searchWord).then(
+        this.props.recipeSearchRequest(searchWord, seafood, milk, egg).then(
             ()=>{
                 if(this.props.searchstatus === "SUCCESS"){
-                    console.log("eat container success");
+                    console.log(this.props.searchstatus);
+                    console.log(this.props.searchData);
+                    this.setState({recipeData : this.props.searchData});
+                    console.log("search container success: " + searchWord);
                     return true;
                 }else{
-                    console.log("eat container fail");
+                    console.log("search container fail");
                     return false;
                 }
             }
         );
     }
 
+    /*shouldComponentUpdate(nextProps, nextState, nextContext){
+        console.log('shouldComponentUpdate');
+        console.log(!shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState));
+        return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
+    }*/
+
     componentDidMount(){
         this.props.recipeListRequest(true, undefined);
     }
 
+
+
     render(){
-        return(
-          <div className="Wrapper">
-              <RecipeViewTest data={this.props.recipeData}
-                              currentUser = {this.props.currentUser}
-                              onScrap={this.handleScrap}
-                              onEat={this.handleEat}
-                                onSearch={this.handleSearch}
-                                history={this.props.history}/>
-          </div>
-        );
+        console.log("container-> ");
+        if(this.props.searchstatus === "SUCCESS"){
+            console.log("container search=====> ");
+            return(
+                <div className="Wrapper">
+                    <RecipeViewTest data={this.props.searchData}
+                                    currentUser = {this.props.currentUser}
+                                    onScrap={this.handleScrap}
+                                    onEat={this.handleEat}
+                                    onSearch={this.handleSearch}
+                                    history={this.props.history}/>
+                </div>
+            );
+        }else{
+            console.log("container first=====> ");
+            return(
+                <div className="Wrapper">
+                    <RecipeViewTest data={this.props.recipeData}
+                                    currentUser = {this.props.currentUser}
+                                    onScrap={this.handleScrap}
+                                    onEat={this.handleEat}
+                                    onSearch={this.handleSearch}
+                                    history={this.props.history}/>
+                </div>
+            );
+        }
+
     }
 }
 
@@ -76,7 +110,8 @@ const mapStateToProps = (state) => {
       scrapstatus: state.recipe.scrap.scrapstatus,
       eatstatus: state.recipe.eat.eatstatus,
       errorCode : state.recipe.scrap.error,
-      searchstatus: state.search.searchWord
+      searchstatus: state.search.status,
+      searchData : state.search.data,
   };
 };
 
@@ -91,8 +126,8 @@ const mapDispatchToProps = (dispatch) => {
         eatRequest: (user_id, recipe_code) =>{
             return dispatch(eatRequest(user_id, recipe_code));
         },
-        recipeSearchRequest:(searchWord) =>{
-            return dispatch(recipeSearchRequest(searchWord));
+        recipeSearchRequest:(searchWord, seafood, milk, egg) =>{
+            return dispatch(recipeSearchRequest(searchWord, seafood, milk, egg));
         }
     };
 };

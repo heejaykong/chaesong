@@ -25,6 +25,9 @@ const MemberLogin = sequelize.define(
         },
         pw:{
             type: Sequelize.STRING
+        },
+        vegantype:{
+            type: Sequelize.INTEGER
         }
     },
     {
@@ -41,6 +44,8 @@ router.post('/signin', (req, res)=> {
         pw : req.body.pw
     };
 
+    let vegantype = "";
+
     MemberLogin.findOne({where:{user_id : req.body.user_id}})
         .then(memberLogin => {
             if(!memberLogin){
@@ -49,6 +54,30 @@ router.post('/signin', (req, res)=> {
                     code:2
                 });
             }
+
+            switch (memberLogin.vegantype) {
+                case 1:
+                    vegantype = "페스코 베지테리언";
+                    break;
+                case 2:
+                    vegantype = "락토 오보 베지테리언";
+                   break;
+                case 3:
+                    vegantype = "오보 베지테리언";
+                    break;
+                case 4:
+                    vegantype = "락토 베지테리언";
+                    break;
+                case 5:
+                    vegantype = "비건";
+                    break;
+                default:
+                    console.log("case error");
+                    break;
+            }
+
+            console.log(vegantype);
+
 
             if(req.body.pw === memberLogin.pw){
                 let session = req.session;
@@ -59,6 +88,9 @@ router.post('/signin', (req, res)=> {
                 res.cookie("member", req.body.user_id,{
                     expires: new Date(Date.now() + 900000)
                 }); // 지워도 괜찮은 코드
+                res.cookie("vegantype", vegantype,{
+                    expires: new Date(Date.now() + 900000)
+                });
                 return res.json({
                     success: true
                 });

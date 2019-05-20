@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import {PersonalBox} from '../components';
+import {ScrapBox} from '../components';
 import PropTypes from 'prop-types';
 
-class PersonalPage extends Component{
+class PersonalGraph extends Component{
     render(){
         const mapToComponents = data => {
             return data.map((personalpage, i)=>{
                 console.log("personal page test map to component");
                 return (
-                    <PersonalBox
+                    <ScrapBox
                         data ={personalpage}
                         key={personalpage.recipe_code}
                         index={i}
                         current={this.props.currentUser}
+                        current_id={this.props.current_id}
                     />
                 );
             })
@@ -25,11 +26,11 @@ class PersonalPage extends Component{
     }
 }
 
-PersonalPage.propTypes={
+PersonalGraph.propTypes={
     data: PropTypes.array
 };
-PersonalPage.defaultProps={
+PersonalGraph.defaultProps={
     data: []
 };
 
-export default PersonalPage;
+export default PersonalGraph;

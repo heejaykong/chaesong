@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Chaesong Main Page</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+		name='viewport' />
+	<link rel="stylesheet" href="../src/asset/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="../src/asset/css/ready.css">
+	<link rel="stylesheet" href="../src/asset/css/demo.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- 상단바 -->
+		<div class="main-header">
+			<!-- 채송 로고&타이틀 -->
+			<div class="logo-header">
+				<img src="../src/asset/img/chaesong-logo2.png">
+				<!-- <a href="index.html" class="logo">
+					<img src="assets/img/채송배추.png">&nbsp&nbspChaesong
+				</a> -->
+				<!-- 상단 좌우측 아이콘 -->
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+					data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+			</div>
+			<!-- 상단바 -->
+			<nav class="navbar navbar-header navbar-expand-lg">
+				<div class="container-fluid">
+					<!-- 검색창 -->
+					<form class="navbar-left navbar-form nav-search mr-md-3 mt-2" action="">
+						<div class="input-group">
+							<input type="text" placeholder="Search ..." class="form-control">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
+							</div>
+						</div>
+					</form>
+					<!-- 검색어 실시간 크롤링 삽입부 -->
+					<div class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+							<li class="nav-item dropdown hidden-caret">
+								#크롤링&nbsp
+							</li>
+							<li class="nav-item dropdown hidden-caret">
+								#크롤링&nbsp
+							</li>
+							<li class="nav-item dropdown">
+								#크롤링&nbsp
+							</li>
+							<li class="nav-item dropdown">
+								#크롤링&nbsp
+							</li>
+							<li class="nav-item dropdown">
+								#크롤링&nbsp
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+		<!-- 마이 페이지 -->
+		<div class="sidebar">
+			<div class="scrollbar-inner sidebar-wrapper">
+				<!-- 사용자 정보 -->
+				<div class="user">
+					<!-- <div class="photo">
+						<img src="assets/img/profile.png">
+					</div> -->
+					<div class="info">
+						<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+							<span>
+								채눈송
+								<!-- 설정한 채식타입 -->
+								<span class="user-level">락토오보 베지테리언</span>
+								<!-- <span class="caret"></span> -->
+							</span>
+						</a>
+						<div class="clearfix"></div>
+						<!-- 사용자 정보 (세부 설정) -->
+						<!-- <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+							<ul class="nav">
+								<li>
+									<a href="#profile">
+										<span class="link-collapse">My Settings</span>
+									</a>
+								</li>
+								<li>
+										<a href="#settings">
+											<span class="link-collapse">Logout</span>
+										</a>
+								</li>
+							</ul>
+						</div> -->
+					</div>
+				</div>
+				<!-- 좌측 사이드바 -->
+				<ul class="nav">
+					<li class="nav-item">
+						<a href="">
+							<i class="la la-bookmark-o"></i>
+							<p>Scrapped Recipe</p>
+						</a>
+					</li>
+					<!-- 여기에 영양소 그래프 삽입 -->
+					<li class="nav-item">
+						<a href="">
+							<i class="la la-check-circle-o"></i>
+							<p>Nutritional Status</p>
+						</a>
+					</li>
+					<!-- 로그아웃 버튼 (수정필요) -->
+					<li class="nav-item update-pro">
+						<button data-toggle="modal" data-target="#modalUpdate">
+							<i class="la la-reply"></i>
+							<p>Logout</p>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 레시피 조회 페이지 -->
+		<div class="main-panel">
+			<div class="content">
+				<div class="container-fluid">
+					<h4 class="page-title">조회된 레시피는 오조오억개입니다...</h4>
+					<div class="row">
+						<!-- 이거 한칸으로 레시피 구성: 4X3 -->
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header ">
+									<h4 class="card-title">레시피 이름</h4>
+									<p class="card-category">레시피 설명 어쩌구저쩌구</p>
+								</div>
+								<div class="card-body">
+									<!-- fill in with recipe image -->
+									<img src="../src/asset/img/recipe_img.jpg">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header ">
+									<h4 class="card-title">레시피 이름</h4>
+									<p class="card-category">레시피 설명 어쩌구저쩌구</p>
+								</div>
+								<div class="card-body">
+									<!-- fill in with recipe image -->
+									<img src="../src/asset/img/recipe_img.jpg">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header ">
+									<h4 class="card-title">레시피 이름</h4>
+									<p class="card-category">레시피 설명 어쩌구저쩌구</p>
+								</div>
+								<div class="card-body">
+									<!-- fill in with recipe image -->
+									<img src="../src/asset/img/recipe_img.jpg">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- footer -->
+			<footer class="footer">
+				<div class="container-fluid">
+					<p class="nav-item"></p>Copyright © 채송</p>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</div>
+</body>
+<script src="../src/asset/js/core/jquery.3.2.1.min.js"></script>
+<script src="../src/asset/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../src/asset/js/core/popper.min.js"></script>
+<script src="../src/asset/js/core/bootstrap.min.js"></script>
+<script src="../src/asset/js/plugin/chartist/chartist.min.js"></script>
+<script src="../src/asset/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<!-- <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script> -->
+<script src="../src/asset/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="../src/asset/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../src/asset/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="../src/asset/js/plugin/chart-circle/circles.min.js"></script>
+<script src="../src/asset/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../src/asset/js/ready.min.js"></script>
+<script src="../src/asset/js/demo.js"></script>
+
+</html>

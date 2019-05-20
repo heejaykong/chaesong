@@ -38,6 +38,7 @@ export default function recipe(state = initialState, action) {
             };
         case types.RECIPE_LIST_SUCCESS:
             console.log("recipeviewtest reducer success");
+            console.log(action.data);
             if(action.isInitial){
                 return{
                     ...state,
@@ -70,7 +71,6 @@ export default function recipe(state = initialState, action) {
                     }
                 }
             }
-
         case types.RECIPE_LIST_FAILURE:
             return{
                 ...state,
@@ -79,6 +79,8 @@ export default function recipe(state = initialState, action) {
                     status: 'FAILURE'
                 }
             };
+
+            ////////////////////////////////////
         case types.RECIPE_SCRAP:
             console.log("scrap reducer waiting");
             return{
@@ -107,6 +109,8 @@ export default function recipe(state = initialState, action) {
                     error: action.error
                 }
             };
+
+            ////////////////////////////////////////////////
         case types.RECIPE_EAT:
             console.log("EAT reducer waiting");
             return{
@@ -135,6 +139,9 @@ export default function recipe(state = initialState, action) {
                     error: action.error
                 }
             };
+
+        ///////////////////////////////////////////////////////
+
         default : return state;
     }
 }
