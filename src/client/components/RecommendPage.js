@@ -1,26 +1,69 @@
+// import React, {Component} from 'react';
+// import PropTypes from 'prop-types';
+// import {RecommendBox} from './RecommendBox';
+//
+// class RecommendPage extends Component{
+//     render() {
+//         const mapToComponents = data => {
+//             return data.map((recipe, i)=>{
+//                 console.log("RecommendPage test");
+//                 return (
+//                     <RecommendBox
+//                         data={recipe}
+//                         key={recipe.recipe_code}
+//                         // index={i}
+//                         // current={this.props.currentUser}
+//                         onScrap={this.props.onScrap}
+//                     />
+//                 );
+//             })
+//         };
+//
+//         return(
+//             <div>
+//                 {mapToComponents(this.props.data)}
+//             </div>
+//         );
+//     }
+// }
+//
+// RecommendPage.propTypes={
+//     data: PropTypes.array,
+//     onScrap: PropTypes.func,
+// };
+// RecommendPage.defaultProps={
+//     data: [],
+//     onScrap: (user_id,recipe_code) =>{console.error("scrap function is not defined");},
+// };
+//
+// export default RecommendPage;
+// ---------------------------------------------------------------------
+
 import React, {Component} from 'react';
-import {RecommendBox} from '../components';
 import PropTypes from 'prop-types';
+// import {RecipeBox} from '../components';
+import {RecommendBox} from './RecommendBox';
 
 class RecommendPage extends Component{
-    render() {
+    render(){
         const mapToComponents = data => {
             return data.map((recipe, i)=>{
-                console.log("RecommendPage test");
                 return (
                     <RecommendBox
                         data={recipe}
                         key={recipe.recipe_code}
-                        // index={i}
+                        index={i}
+                        onClick={this.props.onClick}
                         // current={this.props.currentUser}
-                        onScrap={this.props.onScrap}
+                        // onEat={this.props.onEat}
                     />
+
                 );
             })
         };
 
         return(
-            <div>
+            <div className="row">
                 {mapToComponents(this.props.data)}
             </div>
         );
@@ -28,12 +71,14 @@ class RecommendPage extends Component{
 }
 
 RecommendPage.propTypes={
+    mode: PropTypes.bool,
     data: PropTypes.array,
-    onScrap: PropTypes.func,
+    history: PropTypes.object
 };
+
 RecommendPage.defaultProps={
-    data: [],
-    onScrap: (user_id,recipe_code) =>{console.error("scrap function is not defined");},
+    mode: true,
+    data: []
 };
 
 export default RecommendPage;

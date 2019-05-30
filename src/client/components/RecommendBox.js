@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
-class RecommendBox extends Component{
-    handleScrap = () => {
-        console.log("scrap click");
-        let user_id = Cookies.get('member');
+export class RecommendBox extends Component{
+    handleClick= () => {
+        //show the recipe
         let recipe_code = this.props.data.recipe_code;
-        this.props.onScrap(user_id,recipe_code);
-        console.log("scrap recipe box : ",user_id, recipe_code);
+        this.props.onClick(recipe_code);
+        console.log("recommended clicked");
     }
 
     render() {
@@ -20,16 +18,15 @@ class RecommendBox extends Component{
                         <h3 className="recipename">{this.props.data.recipe_name}</h3>
                     </div>
                     <div className="card-content">
-                        <img src={this.props.data.imgurl} alt="recipe"/>
+                        <img
+                            src={this.props.data.imgurl}
+                            alt="recipe"
+                            onClick={this.handleClick}
+                        />
                         <br/>
                         <pre>
                         {this.props.data.content}
                         </pre>
-                    </div>
-                    <div className="footer">
-                        <button onClick={this.handleScrap}>
-                            스크랩
-                        </button>
                     </div>
                 </div>
             </div>
@@ -39,8 +36,7 @@ class RecommendBox extends Component{
 
 RecommendBox.propTypes={
     data: PropTypes.object,
-    onScrap: PropTypes.scrap,
-    currentUser: PropTypes.string
+    onClick: PropTypes.click
 };
 
 RecommendBox.defaultProps={
@@ -51,10 +47,5 @@ RecommendBox.defaultProps={
         content: '',
         imgurl: 'https://i.imgur.com/ryJzBgY.jpg'
     },
-    onScrap: (user_id, recipe_code) =>{
-        console.error('scrap recipe function net defined');
-    },
     currentUser: ''
 };
-
-export default RecommendBox;
