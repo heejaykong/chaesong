@@ -8,5 +8,8 @@ import Search from './Search';
 import Header from './Header';
 import RecommendPage from './RecommendPage';
 import ScrapPage from './ScrapPage';
+import FloatingButton from './FloatingButton';
+import NutritionGraph from './NutritionGraph';
+import SettingUI from './SettingUI';
 
-export {Header,Authentication, RecipeViewTest, RecipeBox, Main, Search, ScrapView, ScrapPage, ScrapBox, RecommendPage};
+export {Header,Authentication, RecipeViewTest, RecipeBox, Main, Search, ScrapView, ScrapPage, ScrapBox, RecommendPage, NutritionGraph, FloatingButton, SettingUI};

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
-const CanvasJSReact = require('../../canvasjs.react.js');
-const CanvasJS = CanvasJSReact.CanvasJS;
-const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class ScrapBox extends Component{
     render(){

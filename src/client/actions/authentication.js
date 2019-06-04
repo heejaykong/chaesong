@@ -9,7 +9,10 @@ import{
     AUTH_LOGOUT,
     AUTH_GET_STATUS,
     AUTH_GET_STATUS_SUCCESS,
-    AUTH_GET_STATUS_FAILURE
+    AUTH_GET_STATUS_FAILURE,
+    AUTH_CHANGE,
+    AUTH_CHANGE_SUCCESS,
+    AUTH_CHANGE_FAILURE
 } from './ActionType';
 
 export function registerRequest(user_id, pw, birthyear, sex, height, weight, active, vegantype) {
@@ -27,15 +30,49 @@ export function registerRequest(user_id, pw, birthyear, sex, height, weight, act
     };
 }
 
+export function changeRequest(birthyear, sex, height, weight, active, vegantype){
+    return (dispatch) => {
+        dispatch(info_change());
+
+        return axios.post('/api/MemberJoin/refreshsignup',{birthyear, sex, height, weight, active, vegantype})
+            .then((response)=>{
+                console.log("dispatch register success");
+                dispatch(registerSuccess());
+            }).catch((error)=>{
+                console.log("dispatch register failure");
+                dispatch(registerFailure(error.response.data.code));
+            });
+    };
+
+}
+
 export function register() {
     return {
         type: AUTH_REGISTER
     };
 }
 
+export function info_change(){
+    return {
+        type: AUTH_CHANGE
+    };
+}
+
+export function info_changeSuccess(){
+    return {
+        type: AUTH_CHANGE_SUCCESS
+    };
+}
 export function registerSuccess() {
     return {
-        type: AUTH_REGISTER_SUCCESS,
+        type: AUTH_REGISTER_SUCCESS
+    };
+}
+
+export function info_changeFailure(error){
+    return{
+        type: AUTH_CHANGE_FAILURE,
+        error
     };
 }
 

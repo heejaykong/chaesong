@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {Authentication } from '../components';
+import {Authentication, RecommendPage} from '../components';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/authentication';
 
 class Start extends Component {
-
+    render() {
+        return (
+            <div>
+                <h3> start </h3>
+            </div>
+        );
+    }
 }
 
 

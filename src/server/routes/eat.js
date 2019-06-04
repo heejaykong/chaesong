@@ -28,14 +28,20 @@ const MemberEat = sequelize.define(
             defaultValue: Sequelize.NOW,
             primaryKey: true
         },
-        recipe_code: {
+        ingredient_code: {
             type:Sequelize.STRING,
             primaryKey: true
-        }
+        },
+        EATEN_TIME:{
+            type: Sequelize.TIME,
+            defaultValue: Sequelize.NOW,
+            primaryKey: true
+        },
     },{
         timestamps: false
     }
 );
+
 const Recipe = sequelize.define(
     'Recipe',
     {
@@ -62,22 +68,27 @@ const MemberJoin = sequelize.define(
 
 eat.post('/', (req,res)=>{
     console.log("eat post route");
-    const loginUserData = {
-        user_id : req.body.user_id,
-    };
-    const recipeData = {
-        recipe_code : req.body.recipe_code
-    };
     const eatData = {
         user_id : req.body.user_id,
-        recipe_code : req.body.recipe_code,
-        EATEN_DATE : req.body.EATEN_DATE
+        ingredient_code : req.body.ingredient_code
     };
-    console.log("eat post route2");
+    MemberEat.create(eatData)
+        .then(memberEat=>{
+            console.log("eat create");
+            return res.json({success: true})
+        })
+        .catch(err=>{
+            console.log("eat error");
+            return res.send('error' + err)
+        });
+
+    /*console.log("eat post route2");
     MemberEat.findOne({
-        where :{
+        where:{
             user_id : eatData.user_id,
-            recipe_code : eatData.recipe_code
+            ingredient_code : eatData.ingredient_code,
+            EATEN_DATE : eatData.EATEN_DATE,
+            EATEN_TIME : eatData.EATEN_TIME
         }
     }).then((memberEat)=>{
         if(!memberEat){
@@ -94,7 +105,7 @@ eat.post('/', (req,res)=>{
             MemberEat.destroy({
                 where:{
                     user_id : eatData.user_id,
-                    recipe_code : eatData.recipe_code
+                    ingredient_code : eatData.ingredient_code
                 }
             })
                 .then(memberEat=>{
@@ -108,7 +119,7 @@ eat.post('/', (req,res)=>{
         }
     }).catch((err)=>{
         return res.send('error' + err);
-    })
+    })*/
 });
 
 module.exports = eat;

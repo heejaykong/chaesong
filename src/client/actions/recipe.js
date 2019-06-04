@@ -11,10 +11,7 @@ import{
     RECIPE_EAT_FAILURE,
     RECIPE_SEARCH,
     RECIPE_SEARCH_SUCCESS,
-    RECIPE_SEARCH_FAILURE,
-    RECIPE_FILTER,
-    RECIPE_FILTER_SUCCESS,
-    RECIPE_FILTER_FAILURE
+    RECIPE_SEARCH_FAILURE
 } from './ActionType';
 
 export function recipeListRequest(isInitial, listType){
@@ -89,13 +86,13 @@ export function recipescrapFailure(error) {
     };
 }
 
-export function eatRequest(user_id, recipe_code) {
+export function eatRequest(user_id, ingredient_code) {
     return (dispatch) =>{
         dispatch(recipeEat());
 
-        return axios.post('/api/eat', {user_id,recipe_code})
+        return axios.post('/api/eat', {user_id,ingredient_code})
             .then((response)=>{
-                console.log("eat post action: ",user_id, recipe_code);
+                console.log("eat post action: ",user_id, ingredient_code);
                 console.log("eat dispatch success ");
                 dispatch(recipeEatSuccess());
             }).catch((error)=>{
@@ -163,41 +160,3 @@ export function recipeSearchFailure(){
         type: RECIPE_SEARCH_FAILURE
     }
 }
-
-/*export function recipeFilterRequest(seafood, milk, egg, isInitial, listType){
-    return (dispatch) =>{
-        dispatch(recipeFilter());
-
-        return axios.get('./api/filter/'+seafood+'/'+milk+'/'+egg)
-            .then((response)=>{
-                console.log("search dispatch success: " + searchWord);
-                dispatch(recipeSearchSuccess(searchWord, response.data, isInitial, listType));
-            }).catch((error) =>{
-                console.log("search dispatch failure" );
-                dispatch(recipeSearchFailure());
-            });
-    };
-}
-
-export function recipeFilter(){
-    return{
-        type: RECIPE_FILTER
-    };
-}
-
-export function recipeFilterSuccess(searchWord, data, isInitial, listType){
-    return{
-        type: RECIPE_FILTER_SUCCESS,
-        searchWord,
-        data,
-        isInitial,
-        listType
-    }
-}
-
-export function recipeFilterFailure(){
-    return {
-        type: RECIPE_FILTER_FAILURE
-    }
-}*/
-

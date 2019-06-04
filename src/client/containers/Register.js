@@ -28,7 +28,7 @@ class Register extends Component{
         return (
             <div>
                 <Authentication mode={false}
-                                onRegister={this.handleLogin}/>
+                                onRegister={this.handleRegister}/>
             </div>
         );
     }

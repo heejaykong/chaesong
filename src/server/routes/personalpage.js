@@ -38,6 +38,7 @@ const MemberEat = sequelize.define(
             type: Sequelize.STRING,
             primaryKey: true
         },
+
         recipe_name: {
             type:Sequelize.STRING
         },
@@ -111,20 +112,6 @@ const Recipe = sequelize.define(
 
 personalpage.use(cors());
 
-
-personalpage.get('/', (req,res)=>{
-    let session = req.session;
-   //let new_query = 'SELECT * FROM MemberEats, Recipes WHERE Recipes.recipe_code = MemberEats.recipe_code AND MemberEats.user_id = :now_user';
-    let new_query = 'SELECT user_id, sum(ENERGY), sum(PROCPN), sum(FAT), sum(CHOTDF), sum(CA), sum(NA), sum(FE) FROM MemberEats, Recipes WHERE Recipes.recipe_code = MemberEats.recipe_code AND MemberEats.user_id = :now_user';
-   let values = {
-      now_user: session.loginInfo.user_id
-   };
-   sequelize.query(new_query, {replacements: values, model: MemberEat})
-       .then(MemberEats => {return res.json(MemberEats);})
-   // sequelize.query('SELECT * FROM MemberEats, Recipes WHERE Recipes.recipe_code = MemberEats.recipe_code AND MemberEats.user_id = "main"',{model: MemberEat})
-    //   .then(MemberEats =>{ return res.json(MemberEats);})
-});
-
 //SELECT * FROM MemberEats T1 INNER JOIN RECIPES T2 ON (T2.recipe_code = T1.recipe_code)
 
 personalpage.get('/scrap', (req, res) => {
@@ -139,5 +126,15 @@ personalpage.get('/scrap', (req, res) => {
     // sequelize.query('SELECT * FROM MemberEats, Recipes WHERE Recipes.recipe_code = MemberEats.recipe_code AND MemberEats.user_id = "main"',{model: MemberEat})
     //   .then(MemberEats =>{ return res.json(MemberEats);})
 });
+
+personalpage.get('/eaten', (req,res) => {
+    let session2 = req.session;
+    let new_query2 = 'SELECT * FROM MemberEats, Ingredients, memberJoins WHERE MemberEats.ingredient_code = Ingredients.ingredient_code AND MemberEats.user_id = :now_user AND memberJoins.user_id = :now_user';
+    let values2 = {
+        now_user : session2.loginInfo.user_id
+    };
+    sequelize.query(new_query2, {replacements: values2, model : MemberEat})
+        .then(MemberEats => {return res.json(MemberEats);})
+})
 
 module.exports = personalpage;

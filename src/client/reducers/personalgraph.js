@@ -12,51 +12,33 @@ const initialState = {
     }
 };
 
-export default function personalpage (state = initialState, action){
+export default function personalgraph (state = initialState, action){
     switch (action.type){
-
-        case types.INFO_LOAD:
-          console.log("infolist reducer waiting");
-          return{
-              ...state,
-              list: {
-                  ...state.list,
-                  status: 'waiting'
-              }
-          };
-
-        case types.SCRAP_LOAD:
-            console.log("scraplist reducer waiting");
+        case types.EATEN_LIST:
+            console.log("eatenlist reducer waiting");
             return{
                 ...state,
                 list: {
                     ...state.list,
-                    status: 'waiting'
+                    status: "waiting"
                 }
             };
 
-        case types.INFO_LOAD_SUCCESS:
-            console.log("infolist reducer success");
-            return{
-                ...state,
-                status: "SUCCESS",
-                data: action.data
-            };
-
-        case types.SCRAP_LOAD_SUCCESS:
-            console.log("scraplist reducer success");
+        case types.EATEN_LIST_SUCCESS:
+            console.log("eatenlist reducer success");
             if(action.isInitial){
-                return{
+                return {
                     ...state,
                     list: {
                         ...state.list,
-                        status: 'SUCCESS',
+                        status: "SUCCESS",
                         data: action.data
                     }
                 }
-            } else{
+            }
+            else{
                 if(action.listType == 'new'){
-                    return{
+                    return {
                         ...state,
                         list: {
                             ...state.list,
@@ -76,8 +58,7 @@ export default function personalpage (state = initialState, action){
                     }
                 }
             }
-
-        case types.INFO_LOAD_FAILURE:
+        case types.EATEN_LIST_FAILURE:
             return{
                 ...state,
                 list: {
@@ -86,14 +67,6 @@ export default function personalpage (state = initialState, action){
                 }
             };
 
-        case types.SCRAP_LOAD_FAILURE:
-            return{
-                ...state,
-                list: {
-                    ...state.list,
-                    status: 'FAILURE'
-                }
-            };
         default: return state;
     }
 }

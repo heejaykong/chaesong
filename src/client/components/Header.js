@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Cookies from "js-cookie";
 import jQuery from "jquery";
-import {recipeSearchRequest} from "../actions/recipe";
-import {connect} from "react-redux";
+import FloatingButton from "./FloatingButton";
+
 window.$ = window.jQuery = jQuery;
 
 class Header extends Component {
@@ -26,6 +25,11 @@ class Header extends Component {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
+    }
+
+    handleLogout = (e) => {
+        console.log("logout doing");
+        this.props.onLogout();
     }
 
     handleSearch = () => {
@@ -89,6 +93,7 @@ class Header extends Component {
         const userID= Cookies.get('member');
         const vegantype = Cookies.get('vegantype');
 
+
         const topbar = (
             <div className="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <ul className="navbar-nav topbar-nav ml-md-auto align-items-center">
@@ -128,6 +133,12 @@ class Header extends Component {
                     </div>
                     <ul className="nav">
                         <li className="nav-item">
+                            <a href="/settings">
+                                <i className="la la-hand-o-up"></i>
+                                <p>My Settings</p>
+                            </a>
+                        </li>
+                        <li className="nav-item">
                             <a href="/personalpage">
                                 <i className="la la-bookmark-o">
                                 </i>
@@ -135,18 +146,20 @@ class Header extends Component {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href="">
+                            <a href="/personalgraph">
                                 <i className="la la-check-circle-o">
                                 </i>
                                 <p>Nutritional Status</p>
                             </a>
                         </li>
                         <li className="nav-item update-pro">
+                            <a href = "/login">
                             <button data-toggle="modal" data-target="#modalUpdate">
                                 <i className="la la-reply">
                                 </i>
                                 <p>Logout</p>
                             </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -154,10 +167,10 @@ class Header extends Component {
         )
 
         const HEADER = (
-            <div >
+            <div>
                 <div className="main-header">
                     <div className="logo-header">
-                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbYhiUv%2FbtqvpAxTrJt%2Fnv4acApc3o0VWm7PMBBgKk%2Fimg.png" alt="logo"/>
+                        <a href="/mainpage"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbYhiUv%2FbtqvpAxTrJt%2Fnv4acApc3o0VWm7PMBBgKk%2Fimg.png" alt="logo"/> </a>
                         <button className="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                                 data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon">
@@ -190,6 +203,7 @@ class Header extends Component {
                         </div>
                     </nav>
                 </div>
+                <FloatingButton/>
                 {side_bar}
             </div>
         )
@@ -206,14 +220,19 @@ Header.propTypes = {
     isLoggedIn: PropTypes.bool,
     searchWord: PropTypes.array,
     onSearch: PropTypes.func,
-    history: PropTypes.object
+    history: PropTypes.object,
+    onLogout : PropTypes.func
 };
 
 Header.defaultProps = {
     isLoggedIn: false,
     searchWord: [],
-    onSearch:(searchWord, seafood, milk, egg)=>{console.error("search function is not defined")}
+    onSearch:(searchWord, seafood, milk, egg)=>{console.error("search function is not defined")},
+    onLogout: () => {console.error("logout function not defined")},
+    history: {}
 };
+
+
 
 export default Header;
 

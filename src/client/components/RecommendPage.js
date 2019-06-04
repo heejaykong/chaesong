@@ -58,15 +58,7 @@ class RecommendPage extends Component{
                         // onEat={this.props.onEat}
                     />
 
-                );
-            })
-        };
 
-        return(
-            <div className="row">
-                {mapToComponents(this.props.data)}
-            </div>
-        );
     }
 }
 

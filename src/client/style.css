@@ -79,6 +79,7 @@
     box-sizing: border-box;
     font-size: 14px;
 }
+
 .form input:focus {
     border: 1px solid #329e5e; }
 .form button {
@@ -93,11 +94,11 @@
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    -webkit-transition: all;
-    transition: all;
+    -webkit-transition: all 0.3ms ease;
+    transition: all 0.3ms ease;
     cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus, .form button:sex {
+.form button:hover,.form button:active,.form button:focus {
     background: #43A047;
 }
 .form .message {
@@ -142,8 +143,24 @@
 .container .info span .fa {
     color: #EF3B3A;
 }
+
 body {
-    background: #76b852; /* fallback for old browsers */
+    min-height: 100%;
+    background: #f2f3f8; /* fallback for old browsers */
+    font-family: 'Noto Sans KR', "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#full_body{
+    min-height: 100vh;
+    width: 100%;
+}
+
+#member_body{
+    height : 100%;
+    width : 100%;
+    background: #76b852;
     background: -webkit-linear-gradient(right, #76b852, #8DC26F);
     background: -moz-linear-gradient(right, #76b852, #8DC26F);
     background: -o-linear-gradient(right, #76b852, #8DC26F);
@@ -153,3 +170,89 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#root{
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+
+#floatingbutton{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 1;
+}
+
+#floatingbutton img{
+    width: 20%;
+    height: 20%;
+    float: right;
+}
+
+#floating-Modal-content{
+    margin: 5px;
+}
+
+#recipe-modal-content{
+    margin: 5px;
+}
+
+#recipe-modal-content p{
+    white-space:pre-line
+}
+
+#modal-title{
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.modal-body{
+    overflow: scroll;
+    height: 541px;
+}
+
+.modal-body p{
+    white-space:pre-line;
+}
+
+#eatButton{
+    float: right;
+    margin: 3px;
+}
+
+#scrapButton{
+    float: right;
+    margin: 3px;
+}
+
+#auto-complete{
+    margin-top: 10px;
+    margin-left: 10px;
+    left: 0;
+}
+
+#auto-complete input{
+    width: 380px;
+    height: 38px;
+}
+
+#auto-complete .validate{
+    width: 50px;
+    margin-top: 10px;
+    margin-right: 5px;
+    float: left;
+}
+
+#auto-complete select{
+    width: 260px;
+    height: 38px;
+    margin-top: 10px;
+    margin-right: 5px;
+    float: left;
+}
+
+#auto-complete button{
+    height: 38px;
+    margin-top: 10px;
+    float: left;
+}

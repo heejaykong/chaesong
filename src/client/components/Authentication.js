@@ -11,7 +11,7 @@ class Authentication extends React.Component{
         height:"",
         weight:"",
         active:"",
-        vegantype:"",
+        vegantype: "",
     }
 
     handleChange = (e) => {
@@ -31,6 +31,11 @@ class Authentication extends React.Component{
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
+    vegantypeChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
 
     handleRegister = () => {
         let user_id = this.state.user_id;
@@ -41,6 +46,7 @@ class Authentication extends React.Component{
         let weight = this.state.weight;
         let active = this.state.active;
         let vegantype = this.state.vegantype;
+        console.log("타입" + vegantype+" 활동량 " + active +" 성별 " +sex);
 
         this.props.onRegister(user_id, pw, birthyear, sex, height, weight, active, vegantype).then(
             (result) => {
@@ -58,7 +64,8 @@ class Authentication extends React.Component{
                 }
             }
         )
-    }
+    };
+
     handleLogin = () => {
         let user_id = this.state.user_id;
         let pw = this.state.pw;
@@ -108,7 +115,7 @@ class Authentication extends React.Component{
             </div>
         );
         const inputBoxes = (
-            <div>
+            <form>
                 <div className="register-row">
                     <h3 className="register-title">
                         <label htmlFor="id">아이디</label>
@@ -120,18 +127,20 @@ class Authentication extends React.Component{
                         onChange={this.handleChange}
                         value={this.state.user_id}/>
                 </div>
-                <div className="register-row">
-                    <h3 className="register-title">
-                        <label htmlFor="pw">비밀번호</label>
-                    </h3>
-                    <input
-                        name="pw"
-                        type="password"
-                        className="validate"
-                        onChange={this.handleChange}
-                        value={this.state.pw}
-                        onKeyPress={this.handleKeyPress}/>
-                </div>
+                <form>
+                    <div className="register-row">
+                        <h3 className="register-title">
+                            <label htmlFor="pw">비밀번호</label>
+                        </h3>
+                        <input
+                            name="pw"
+                            type="password"
+                            className="validate"
+                            onChange={this.handleChange}
+                            value={this.state.pw}
+                            onKeyPress={this.handleKeyPress}/>
+                    </div>
+                </form>
                 <div className="register-row">
                     <h3 className="register-title">
                         <label htmlFor="birthyear">출생연도</label>
@@ -151,7 +160,7 @@ class Authentication extends React.Component{
                     <div id="sex">
                         <label className="radio-inline"><input type="radio" name="sex" className="validate"
                                                                onChange={this.sexChange}
-                                   value="0"/>여자</label>
+                                                               value="0"/>여자</label>
                         <label className="radio-inline"><input type="radio" name="sex" className="validate"
                                                                onChange={this.sexChange}
                                                                value="1"/>남자</label>
@@ -202,31 +211,27 @@ class Authentication extends React.Component{
                     <h3 className="register-title">
                         <label htmlFor="vegantype">채식타입</label>
                     </h3>
-                    <select className="form-control" name="vegantype" id="vegantype">
+                    <select className="form-control" name="vegantype" id="vegantype"
+                            value={this.state.vegantype} onChange={this.vegantypeChange}>
                         <option selected>채식타입을 선택해주세요!</option>
                         <option name="vegantype"
                                 className="validate"
-                                onChange={this.handleChange}
                                 value="1">페스코 베지테리언</option>
                         <option name="vegantype"
                                 className="validate"
-                                onChange={this.handleChange}
                                 value="2">락토오보 베지테리언</option>
                         <option name="vegantype"
                                 className="validate"
-                                onChange={this.handleChange}
                                 value="3">오보 베지테리언</option>
                         <option name="vegantype"
                                 className="validate"
-                                onChange={this.handleChange}
                                 value="4">락토 베지테리언</option>
                         <option name="vegantype"
                                 className="validate"
-                                onChange={this.handleChange}
                                 value="5">비건</option>
                     </select>
                 </div>
-            </div>
+            </form>
         );
         const loginView=(
             <div>
@@ -246,7 +251,7 @@ class Authentication extends React.Component{
                 <div className = "card-content">
                     <div className="register-form">
                         {inputBoxes}
-                        <button className="btn"
+                        <button className="register_btn"
                                 onClick={this.handleRegister}>CREATE</button>
                         <p className="message">이미 회원이신가요? <a href="/login">로그인</a></p>
                     </div>

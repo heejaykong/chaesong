@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import {RecipeViewTest} from "./index";
 import {eatRequest, recipeListRequest, recipeSearchRequest, scrapRequest} from "../actions/recipe";
 import {connect} from "react-redux";
+import Modal from "./Header";
 
 const queryString = require('query-string');
 
@@ -109,6 +110,7 @@ class Main extends Component{
         const query = queryString.parse(location.search);
         console.log(query);
         const searchWord = query.searchWord;
+
         return(
             <div className="main-panel" id="main-panel">
                 <div className="content">
@@ -122,30 +124,9 @@ class Main extends Component{
                                         history={this.props.history}/>
                     </div>
                 </div>
-            </div>)
-        /*if(!searchWord) {
-            return(
-                <div className="main-panel" id="main-panel">
-                    <div className="content">
-                        <div className="container-fluid">
-                            <h4 className="page-title">조회된 레시피</h4>
-                            <div className="row">
-                                <RecipeViewTest data={this.props.recipeData}
-                                                currentUser = {this.props.currentUser}
-                                                onScrap={this.handleScrap}
-                                                onEat={this.handleEat}
-                                                onSearch={this.handleSearch}
-                                                history={this.props.history}/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )
-        } else{
-            console.log("searchData rendering====================");
+            </div>
+        )
 
-            )
-        }*/
     }
 }
 

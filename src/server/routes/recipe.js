@@ -15,7 +15,6 @@ const sequelize = new Sequelize('chaesongdb', 'comhong', 'sook2019', {
 );
 const Op = Sequelize.Op;
 const recipe = express.Router();
-const querystring = require("querystring");
 
 const Recipe = sequelize.define(
     'Recipe',
@@ -62,47 +61,6 @@ recipe.get('/', (req,res)=>{
         .then(recipes=>{
             return res.json(recipes)
         })
-        .catch(err=>{
-            return res.send('error' + err)
-        })
-});
-
-recipe.get('/:searchWord/:seafood/:milk/:egg', (req,res)=>{
-    console.log("recipe search routes");
-    let searchWord = req.params.searchWord;
-    let seafood = req.params.seafood;
-    let milk = req.params.milk;
-    let egg = req.params.egg;
-    console.log(req.params.searchWord + " & " +searchWord);
-    console.log("seafood: "  + seafood +"/ milk: " + milk + "/ egg: " + egg);
-    Recipe.findAll({
-        where:{
-            [Op.or]: [
-                {
-                    recipe_name: {
-                        [Op.like]: "%" + searchWord + "%"
-                    }
-                },
-                {
-                    content:{
-                        [Op.like]: "%" + searchWord + "%"
-                    }
-                },
-            ],
-            seafood : {
-                [Op.lte] : req.params.seafood
-            },
-            milk : {
-                [Op.lte] : req.params.milk
-            },
-            egg : {
-                [Op.lte] : req.params.egg
-            }
-        }
-    }).then(recipes=>{
-        //console.log(recipes);
-        return res.json(recipes)
-    })
         .catch(err=>{
             return res.send('error' + err)
         })

@@ -116,14 +116,6 @@ class RecipeViewsTest extends Component{
     }
 }
 
-/*<div>
-                    {searchBox}
-                </div>
-                <div>
-                    {recipeCheckBox}
-                    <button onClick={this.handleSearch}>검색</button>
-                </div>*/
-
 RecipeViewsTest.propTypes={
   mode: PropTypes.bool,
   data: PropTypes.array,
