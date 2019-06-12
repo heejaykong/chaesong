@@ -11,6 +11,5 @@ import ScrapPage from './ScrapPage';
 import FloatingButton from './FloatingButton';
 import NutritionGraph from './NutritionGraph';
 import SettingUI from './SettingUI';
-import VegeKeyword from './VegeKeyword';
 
-export {VegeKeyword, Header, Authentication, RecipeViewTest, RecipeBox, Main, Search, ScrapView, ScrapPage, ScrapBox, RecommendPage, NutritionGraph, FloatingButton, SettingUI};
+export {Header, Authentication, RecipeViewTest, RecipeBox, Main, Search, ScrapView, ScrapPage, ScrapBox, RecommendPage, NutritionGraph, FloatingButton, SettingUI};

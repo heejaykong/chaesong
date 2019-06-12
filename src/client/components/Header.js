@@ -6,7 +6,6 @@ import FloatingButton from "./FloatingButton";
 //크롤링 띄우기 위한 test code
 import { vegekeywordListRequest } from '../actions/vegekeyword';
 import {connect} from "react-redux";
-import { VegeKeyword } from '../components';
 //import문은 end
 
 window.$ = window.jQuery = jQuery;
@@ -54,7 +53,7 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.props.vegekeywordListRequest(true, undefined);
+        //components 시도하려다 실패 this.props.vegekeywordListRequest(true, undefined);
 
         let toggle_sidebar = false;
         let toggle_topbar = false;
@@ -104,8 +103,8 @@ class Header extends Component {
             <div className="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <ul className="navbar-nav topbar-nav ml-md-auto align-items-center">
                     <li className="nav-item dropdown hidden-caret">
-                        #<VegeKeyword data={this.props.vegekeywordData}/>
-                        (크롤링)
+                        /* components 시도하려다 실패 <VegeKeyword data={this.props.vegekeywordData}/> */
+                        #(크롤링)
                     </li>
                     <li className="nav-item dropdown hidden-caret">
                         #크롤링
