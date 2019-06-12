@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const path =require( 'path');
+const path =require('path');
 const cookieParser = require("cookie-parser");
 import api from './routes';
 

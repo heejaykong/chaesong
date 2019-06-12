@@ -47,7 +47,7 @@ import {RecommendBox} from './RecommendBox';
 class RecommendPage extends Component{
     render(){
         const mapToComponents = data => {
-            return data.map((recipe, i)=>{
+            return data.map((recipe, i)=> {
                 return (
                     <RecommendBox
                         data={recipe}
@@ -57,8 +57,9 @@ class RecommendPage extends Component{
                         // current={this.props.currentUser}
                         // onEat={this.props.onEat}
                     />
-
-
+                );
+            });
+        }
     }
 }
 

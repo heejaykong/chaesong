@@ -1,5 +1,6 @@
 import * as types from '../actions/ActionType';
 
+
 const initialState = {
     list: {
         status: 'INIT',

@@ -33,14 +33,14 @@ class Main extends Component{
         );
     }
 
-    handleEat= (user_id, recipe_code) =>{
+    handleEat= (user_id, recipe_code) => {
         console.log("eat container ", user_id, recipe_code);
-        return this.props.eatRequest(user_id, recipe_code).then(
-            ()=>{
-                if(this.props.eatstatus === "SUCCESS"){
+        return this.props.eatRequest(user_id, recipe_code).then (
+            () => {
+                if(this.props.eatstatus === "SUCCESS") {
                     console.log("eat container success");
                     return true;
-                }else{
+                } else {
                     console.log("eat container fail");
                     return false;
                 }
@@ -48,17 +48,17 @@ class Main extends Component{
         );
     }
 
-    handleSearch = (searchWord, seafood, milk, egg) =>{
+    handleSearch = (searchWord, seafood, milk, egg) => {
         console.log("search container");
-        this.props.recipeSearchRequest(searchWord, seafood, milk, egg).then(
-            ()=>{
-                if(this.props.searchstatus === "SUCCESS"){
+        this.props.recipeSearchRequest(searchWord, seafood, milk, egg).then (
+            () => {
+                if(this.props.searchstatus === "SUCCESS") {
                     console.log(this.props.searchstatus);
                     console.log(this.props.searchData);
                     this.setState({recipeData : this.props.searchData});
                     console.log("search container success: " + searchWord);
                     return true;
-                }else{
+                } else {
                     console.log("search container fail");
                     return false;
                 }

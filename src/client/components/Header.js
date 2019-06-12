@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import Cookies from "js-cookie";
 import jQuery from "jquery";
 import FloatingButton from "./FloatingButton";
+//크롤링 띄우기 위한 test code
+import { vegekeywordListRequest } from '../actions/vegekeyword';
+import {connect} from "react-redux";
+import { VegeKeyword } from '../components';
+//import문은 end
 
 window.$ = window.jQuery = jQuery;
 
@@ -49,6 +54,8 @@ class Header extends Component {
     }
 
     componentDidMount() {
+        this.props.vegekeywordListRequest(true, undefined);
+
         let toggle_sidebar = false;
         let toggle_topbar = false;
         let nav_open = 0;
@@ -93,12 +100,12 @@ class Header extends Component {
         const userID= Cookies.get('member');
         const vegantype = Cookies.get('vegantype');
 
-
         const topbar = (
             <div className="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <ul className="navbar-nav topbar-nav ml-md-auto align-items-center">
                     <li className="nav-item dropdown hidden-caret">
-                        #크롤링
+                        #<VegeKeyword data={this.props.vegekeywordData}/>
+                        (크롤링)
                     </li>
                     <li className="nav-item dropdown hidden-caret">
                         #크롤링
@@ -232,7 +239,24 @@ Header.defaultProps = {
     history: {}
 };
 
+//크롤링 띄우기 위한 test code
+const mapStateToProps = (state) => {
+    return {
+        vegekeywordData: state.vegekeyword.list.data, //
+        listStatus: state.vegekeyword.list.status,//
+        //isLast: state.vegekeyword.list.isLast//
+    };
+};
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        vegekeywordListRequest: (isInitial, listType) => {
+            return dispatch(vegekeywordListRequest(isInitial, listType));
+        }
+    };
+};
+//end of '크롤링 띄우기 위한 test code'
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+// export default Header;
 

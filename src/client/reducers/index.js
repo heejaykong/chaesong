@@ -6,6 +6,7 @@ import search from './search';
 import recommendpage from './recommendpage';
 import {combineReducers} from 'redux';
 import ingredient from './ingredient';
+import vegekeyword from './vegekeyword';
 
 export default combineReducers({
     authentication,
@@ -13,5 +14,6 @@ export default combineReducers({
     personalpage,
     search,
     ingredient,
-    personalgraph
+    personalgraph,
+    vegekeyword
 });
